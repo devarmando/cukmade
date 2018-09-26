@@ -3,16 +3,84 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/button_disabled" />
+        android:drawable="@drawable/button_disabled" >
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item>
+
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:height="1dp"
+                        android:color="#0e000000" />
+                    <solid android:color="#ffffff" />
+                    <padding android:left="10dp"  />
+
+                    <corners android:radius="27dp"  />
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@drawable/button_pressed" />
+        >
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item>
+
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:height="1dp"
+                        android:color="#0e000000" />
+                    <solid android:color="#ffffff" />
+                    <padding android:left="10dp"  />
+
+                    <corners android:radius="27dp"  />
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
     <item
         android:state_focused="true"
         android:state_enabled="true"
-        android:drawable="@drawable/button_focused" />
+         >
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item>
+
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:height="1dp"
+                        android:color="#0e000000" />
+                    <solid android:color="#ffffff" />
+                    <padding android:left="10dp"  />
+
+                    <corners android:radius="27dp"  />
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/button_enabled" />
+        >
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item>
+
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:height="1dp"
+                        android:color="#0e000000" />
+                    <solid android:color="#ffffff" />
+                    <padding android:left="10dp"  />
+
+                    <corners android:radius="27dp"  />
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
 </selector>

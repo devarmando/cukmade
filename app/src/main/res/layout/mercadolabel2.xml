@@ -21,10 +21,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="31dp"
-                    android:text="Mercado el Grande - 44 metros"
-                    android:gravity="left"
+                    android:text="Mariscos y Platanos Cookpot"
+                    android:gravity="left|center_vertical"
                     android:textSize="21.0816951782sp"
-                    android:paddingTop="8dp"
+
                     android:textColor="#000000"
                     />
                 <TextView
