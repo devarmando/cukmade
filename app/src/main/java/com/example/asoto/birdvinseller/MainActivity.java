@@ -1,8 +1,8 @@
 package com.example.asoto.birdvinseller;
 
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.app.Fragment;
@@ -15,17 +15,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.CameraPosition;
 
 import java.util.ArrayList;
@@ -39,8 +40,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private static final LatLng MUSEUM = new LatLng(38.8874245, -77.0200729);
 
+    LinearLayout l1,l2;
+    Button btnsub;
+    Animation uptodown,downtoup;
+    Boolean switched = false;
+    View myView;
+    View myView1;
+    View myView2;
+    View myView3;
+    ObjectAnimator animator;
+    ObjectAnimator animator1;
+    ObjectAnimator animator2;
+    ObjectAnimator animator3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         /*setContentView(R.layout.nuevoprincipal); */
@@ -85,6 +99,89 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    public void Switch(View view){
+
+        myView = findViewById(R.id.Opcion1);
+        myView1 = findViewById(R.id.Opcion2);
+        myView2 = findViewById(R.id.Opcion1a);
+        myView3 = findViewById(R.id.Opcion2a);
+
+
+        if (switched) {
+            // Set the layer type to hardware
+
+            myView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            myView1.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            myView2.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            myView3.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+            // Setup the animation
+            animator = ObjectAnimator.ofFloat(myView, View.ALPHA, (float)1.0);
+            animator1 = ObjectAnimator.ofFloat(myView1, View.ALPHA, (float)0.0);
+            animator2 = ObjectAnimator.ofFloat(myView2, View.ALPHA, (float)1.0);
+            animator3 = ObjectAnimator.ofFloat(myView3, View.ALPHA, (float)0.0);
+
+            // Add a listener that does cleanup
+            animator1.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                    animator.start();
+                    animator2.start();
+                }
+            });
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    myView.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView1.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView2.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView3.setLayerType(View.LAYER_TYPE_NONE, null);
+
+                }
+            });
+            // Start the animation
+
+            animator1.start();
+            animator3.start();
+            switched = false;
+        }
+        else {
+            // Set the layer type to hardware
+
+            myView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+            // Setup the animation
+            animator = ObjectAnimator.ofFloat(myView, View.ALPHA, (float)0.0);
+            animator1 = ObjectAnimator.ofFloat(myView1, View.ALPHA, (float)1.0);
+            animator2 = ObjectAnimator.ofFloat(myView2, View.ALPHA, (float)0.0);
+            animator3 = ObjectAnimator.ofFloat(myView3, View.ALPHA, (float)1.0);
+
+            // Add a listener that does cleanup
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                    animator1.start();
+                    animator3.start();
+                }
+            });
+            animator1.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    myView.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView1.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView2.setLayerType(View.LAYER_TYPE_NONE, null);
+                    myView3.setLayerType(View.LAYER_TYPE_NONE, null);
+                }
+            });
+            // Start the animation
+
+            animator.start();
+            animator2.start();
+            switched = true;
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
